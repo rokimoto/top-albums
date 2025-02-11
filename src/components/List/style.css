@@ -31,7 +31,14 @@
   margin: 0 auto;
   margin-bottom: var(--spacing-lg);
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+}
+
+@media (min-width: 961px) {
+  .list-sorting {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 }
 
 .list-filters {
@@ -55,4 +62,12 @@
   padding: var(--spacing-6xl) 0;
   display: flex;
   justify-content: center;
+}
+
+.list-error {
+  font-family: var(--fontFamily-paragraph);
+  font-weight: var(--fontWeight-bold);
+  font-size: var(--fontSize-paragraph-sm);
+  padding: var(--spacing-6xl) 0 var(--spacing-4xl);
+  text-align: center;
 }
