@@ -1,0 +1,20 @@
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-lg);
+  margin: var(--spacing-xl);
+}
+
+.pagination-number {
+  color: var(--fontColor-primary);
+  font-family: var(--fontFamily-paragraph);
+  font-weight: var(--fontWeight-paragraph);
+  font-size: var(--fontSize-paragraph-sm);
+  cursor: pointer;
+}
+
+.pagination-number-active {
+  font-weight: var(--fontWeight-bold);
+  cursor: default;
+}
