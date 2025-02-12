@@ -51,7 +51,7 @@
 }
 
 .modal-contentInner {
-  background: var(--background-primary);
+  background: var(--background-secondary);
   display: flex;
   flex-direction: column;
   width: 100%;
