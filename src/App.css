@@ -3,14 +3,6 @@
   min-height: 100vh;
 }
 
-.button {
-  background: var(--background-inverse);
-  color: var(--fontColor-inverse);
-  position: absolute;
-  top: var(--spacing-md);
-  left: var(--spacing-md);
-}
-
 .topContent {
   text-align: center;
   background-color: var(--background-primary);

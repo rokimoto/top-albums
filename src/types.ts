@@ -6,6 +6,7 @@ export interface Album {
   genre: string;
   releaseDate: string;
   releaseYear: string;
+  itunesUrl: string;
 }
 
 export interface Option {

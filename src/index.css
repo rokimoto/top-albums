@@ -51,6 +51,7 @@
   --fontSize-header-sm: 16px;
   --fontSize-paragraph: 16px;
   --fontSize-paragraph-sm: 14px;
+  --fontSize-paragraph-xs: 12px;
   --fontWeight-header: 500;
   --fontWeight-paragraph: 400;
   --fontColor-white: var(--color-white);
@@ -81,6 +82,7 @@
   --fontColor-primary: var(--color-black);
   --fontColor-subdued: var(--color-grey-900);
   --fontColor-inverse: var(--color-white);
+  --fontColor-inverseSubdued: var(--color-grey-50);
   --background-primary: var(--color-white);
   --background-secondary: var(--color-grey-100);
   --background-inverse: var(--color-black);
@@ -95,6 +97,7 @@
   --fontColor-primary: var(--color-white);
   --fontColor-subdued: var(--color-grey-100);
   --fontColor-inverse: var(--color-black);
+  --fontColor-inverseSubdued: var(--color-grey-900);
   --background-primary: var(--color-black);
   --background-secondary: var(--color-grey-900);
   --background-inverse: var(--color-white);

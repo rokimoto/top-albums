@@ -21,6 +21,16 @@
   z-index: 1;
 }
 
+.modal-close {
+  position: absolute;
+  right: var(--spacing-xs);
+  top: 0;
+  padding: var(--spacing-2xs) var(--spacing-sm);
+  color: var(--fontColor-inverse);
+  font-size: 40px;
+  cursor: pointer;
+}
+
 .modal-contentOuter {
   max-height: 100vh;
   position: relative;
@@ -34,9 +44,8 @@
 }
 
 @media (min-width: 961px) {
-  .modal-contentInner {
+  .modal-contentOuter {
     width: 500px;
-    overflow: hidden;
     padding: 0;
   }
 }
@@ -47,25 +56,20 @@
   flex-direction: column;
   width: 100%;
   position: relative;
-  padding: var(--spacing-2xl) var(--spacing-md);
+  padding: var(--spacing-md) ;
   box-sizing: border-box;
   border-radius: 20px;
+  text-align: center;
 }
 
 @media (min-width: 961px) {
   .modal-contentInner {
-    padding: var(--spacing-2xl) var(--spacing-lg);
+    padding: var(--spacing-xs) var(--spacing-lg) var(--spacing-3xl);
   }
 }
 
 .modal-image {
-  margin: 0 auto var(--spacing-xl);
-}
-
-.modal-divider {
-  height: 1px;
-  width: 100%;
-  /* background-color: var(--borderColor-); */
+  margin: var(--spacing-4xl) auto var(--spacing-lg);
 }
 
 .modal-header {
@@ -73,19 +77,21 @@
   font-weight: var(--fontWeight-header);
   font-size: var(--fontSize-header-md);
   color: var(--fontColor-inverse);
-  margin-bottom: var(--spacing-sm);
-}
-
-.modal-text {
-  font-family: var(--fontFamily-paragraph);
-  font-weight: var(--fontWeight-paragraph);
-  font-size: var(--fontSize-paragraph);
-  color: var(--fontColor-inverse);
   margin-bottom: var(--spacing-xs);
 }
 
-.modal-tags {
-  margin-bottom: var(--spacing-sm);
-  display: flex;
-  gap: var(--spacing-md);
+.modal-artist {
+  font-family: var(--fontFamily-paragraph);
+  font-weight: var(--fontWeight-paragraph);
+  font-size: var(--fontSize-paragraph);
+  color: var(--fontColor-inverseSubdued);
+  margin-bottom: var(--spacing-xs);
+}
+
+.modal-info {
+  font-family: var(--fontFamily-paragraph);
+  font-weight: var(--fontWeight-paragraph);
+  font-size: var(--fontSize-paragraph-xs);
+  color: var(--fontColor-inverseSubdued);
+  margin-bottom: var(--spacing-xl);
 }

@@ -1,6 +1,9 @@
+// Components
+import Button from '../Button';
+// Hooks
 import { useLockedBody } from '../../hooks/useLockedBody';
+// Types
 import { Album } from '../../types';
-import Tag from '../Tag';
 // Style
 import './style.css'
 
@@ -17,14 +20,14 @@ const Modal = ({album, handleClose}: ModalProps) => {
       <div className="modal-background" onClick={handleClose} />
       <div className="modal-contentOuter">
         <div className='modal-contentInner'>
+          <div className='modal-close' onClick={handleClose}>&#x2612;</div>
           <img className='modal-image' src={album.image} alt={album.name} height={170} width={170} />
-          <div className='modal-divider' />
           <h3 className='modal-header'>{album.name}</h3>
-          <div className='modal-tags'>
-            <Tag text={album.genre} />
-          </div>
-          <p className='modal-text'>{album.artist}</p>
-          <p className='modal-text'>{album.releaseDate}</p>
+          <p className='modal-artist'>{album.artist}</p>
+          <p className='modal-info'>{album.genre} &middot; {album.releaseYear}</p>
+          <a href={album.itunesUrl} target="_blank">
+            <Button text='View on Apple Music' />
+          </a>
         </div>
       </div>
     </div>

@@ -26,7 +26,7 @@ const List = () => {
   const [genreOptions, setGenreOptions] = useState<Option[]>([]);
   const [releaseYearOptions, setReleaseYearOptions] = useState<Option[]>([]);
   const [selectedGenre, setSelectedGenre] = useState<string>('all');
-  const [selectedYear, setSelectedYear] = useState<string>('');
+  const [selectedYear, setSelectedYear] = useState<string>('all');
   const [selectedSort, setSelectedSort] = useState<SortOptions>(SortOptions.ARTIST_ASC);
   const [selectedAlbum, setSelectedAlbum] = useState<Album | null>(null);
 
@@ -46,7 +46,7 @@ const List = () => {
     responseJson.feed.entry.map((entry: ITunesEntry) => {
       const entryGenre = entry.category.attributes.label;
       const releaseYear = new Date(entry['im:releaseDate'].label).getFullYear();
-      dataList.push({name: entry["im:name"].label, artist: entry["im:artist"].label, link: entry.link.attributes.href, image: entry["im:image"][2].label, genre: entryGenre, releaseDate: entry['im:releaseDate'].attributes.label, releaseYear: releaseYear.toString()});
+      dataList.push({name: entry["im:name"].label, artist: entry["im:artist"].label, link: entry.link.attributes.href, image: entry["im:image"][2].label, genre: entryGenre, releaseDate: entry['im:releaseDate'].attributes.label, releaseYear: releaseYear.toString(), itunesUrl: entry.link.attributes.href});
       if (genreList.indexOf(entryGenre) === -1)  {
         genreList.push(entryGenre);
       }
