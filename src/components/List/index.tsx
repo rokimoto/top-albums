@@ -47,7 +47,7 @@ const List = () => {
     responseJson.feed.entry.map((entry: ITunesEntry) => {
       const entryGenre = entry.category.attributes.label;
       const releaseYear = new Date(entry['im:releaseDate'].label).getFullYear();
-      dataList.push({name: entry["im:name"].label, artist: entry["im:artist"].label, link: entry.link.attributes.href, image: entry["im:image"][2].label, genre: entryGenre, releaseDate: entry['im:releaseDate'].attributes.label, releaseYear: releaseYear.toString(), itunesUrl: entry.link.attributes.href});
+      dataList.push({name: entry["im:name"].label, artist: entry["im:artist"].label, link: entry.link.attributes.href, image: entry["im:image"][2].label, genre: entryGenre, releaseYear: releaseYear.toString(), itunesUrl: entry.link.attributes.href});
       if (genreList.indexOf(entryGenre) === -1)  {
         genreList.push(entryGenre);
       }
@@ -62,7 +62,7 @@ const List = () => {
     // sort by artist by default on load
     dataList = sortArtistAscending(dataList);
     setData(dataList);
-    setAlbums(dataList.slice(0, ITEMS_PER_PAGE));
+    setAlbums(dataList);
     setLoading(false);
     setGenreOptions(genres);
   }, []);
@@ -82,15 +82,13 @@ const List = () => {
   }, [getTopAlbums]);
 
   const handlePageChange = (page: number) => {
-    setAlbums(data.slice(ITEMS_PER_PAGE * (page - 1), ITEMS_PER_PAGE * page));
-    setLoading(false);
     setPage(page);
   }
 
   const resortByYear = (decade: string) => {;
     setPage(1);
     setSelectedYear(decade);
-    let newAlbums: Album[] = [];
+    const newAlbums: Album[] = [];
     data.map((entry) => {
       const isInDecade = checkIfInDecade(entry.releaseYear, decade);
       const isSameGenre = selectedGenre === 'all' || entry.genre === selectedGenre;
@@ -99,7 +97,6 @@ const List = () => {
       }
     });
     console.log('decade', decade, 'length', newAlbums.length)
-    newAlbums = newAlbums.slice(0, ITEMS_PER_PAGE);
     setAlbums(newAlbums);
     setLoading(false);
     calculateTotalPages(newAlbums.length);
@@ -113,7 +110,7 @@ const List = () => {
   const resortByGenre = (newGenre: string) => {
     setPage(1);
     setSelectedGenre(newGenre);
-    let newAlbums: Album[] = [];
+    const newAlbums: Album[] = [];
     data.map((entry) => {
       const isInDecade = checkIfInDecade(entry.releaseYear, selectedYear);
       const isSameGenre = newGenre === 'all' || entry.genre === newGenre;
@@ -121,7 +118,6 @@ const List = () => {
         newAlbums.push(entry);
       }
     })
-    newAlbums = newAlbums.slice(0, ITEMS_PER_PAGE)
     setAlbums(newAlbums);
     setLoading(false);
     calculateTotalPages(newAlbums.length);
@@ -169,9 +165,10 @@ const List = () => {
             </div>
           </div>
         </div>
+
         {!!albums.length && (
           <div className="list-content">
-            {albums.map((album, i) => <ListItem album={album} key={`album-${i}`} handleSelect={() => {setSelectedAlbum(album)}} />)}
+            {albums.slice(ITEMS_PER_PAGE * (page - 1), ITEMS_PER_PAGE * page).map((album, i) => <ListItem album={album} key={`album-${i}`} handleSelect={() => {setSelectedAlbum(album)}} />)}
           </div>
         )}
         {!albums.length && !error && loading && (

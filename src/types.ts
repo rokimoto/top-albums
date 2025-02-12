@@ -4,7 +4,6 @@ export interface Album {
   link: string;
   image: string;
   genre: string;
-  releaseDate: string;
   releaseYear: string;
   itunesUrl: string;
 }
