@@ -1,7 +1,7 @@
 import { useState } from 'react'
 // Components
 import List from './components/List';
-import DarkModeToggle from './components/DarkModeToggle';
+import Toggle from './components/Toggle';
 // Styles
 import './App.css'
 import './styles/reset.css'
@@ -10,7 +10,6 @@ function App() {
   const [theme, updateTheme] = useState<"light-theme" | "dark-theme">("light-theme");
 
   const toggleTheme = () => {
-    console.log('toggle')
     if (theme === "light-theme") {
       updateTheme("dark-theme");
     } else {
@@ -21,7 +20,9 @@ function App() {
   return (
     <div  className={`app ${theme}`}>
       <div className='topContent'>
-        <DarkModeToggle handleToggle={toggleTheme} theme={theme} />
+        <div className='darkModeToggle'>
+          <Toggle handleToggle={toggleTheme} selected={theme === 'light-theme'} icon={theme === 'light-theme' ? '\u263C' : '\u263e'} />
+        </div>
         <div className='topContent-text'></div>
           <h1 className='topContent-header'>Top Albums</h1>
           <p className='topContent-text'>Browse genres. Or years. Discover albums you've never discovered before.</p>

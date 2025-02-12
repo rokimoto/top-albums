@@ -3,6 +3,23 @@
   min-height: 100vh;
 }
 
+.darkModeToggle {
+  position: absolute;
+  top: var(--spacing-md);
+  right: var(--spacing-sm);
+  z-index: 1000;
+}
+
+@media (min-width: 961px) {
+  .darkModeToggle {
+    position: fixed;
+    top: auto;
+    right: var(--spacing-lg);
+    bottom: var(--spacing-lg);
+  }
+}
+
+
 .topContent {
   text-align: center;
   background-color: var(--background-primary);

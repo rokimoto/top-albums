@@ -1,14 +1,15 @@
 import {useEffect, useState, FormEvent, useCallback} from 'react';
 // Components
+import Filters from '../Filters';
 import ListItem from '../ListItem';
-import Select from '../Select';
 import Pagination from '../Pagination';
 import Loader from '../Loader';
 import Modal from '../Modal';
 // Types
-import {Album, Option, SortOptions, ITunesEntry, ITunesResponse} from '../../types';
+import {Album, Option, SortOptions, ITunesResponse} from '../../types';
 // Helpers
 import { sortAlbumAscending, sortAlbumDescending, sortArtistAscending, sortArtistDescending } from '../../helpers/sort';
+import {createLists} from '../../helpers/list';
 import { yearOptions, checkIfInDecade } from '../../helpers/releaseYears';
 // Api
 import { fetchAlbums } from '../../api/api';
@@ -40,28 +41,15 @@ const List = () => {
   }
 
   const displayTopAlbums =  useCallback((responseJson: ITunesResponse) => {
-    let dataList: Album[] = [];
-    const genreList: string[] = [];
-    const releaseYearList: number[] = [];
-    responseJson.feed.entry.map((entry: ITunesEntry) => {
-      const entryGenre = entry.category.attributes.label;
-      const releaseYear = new Date(entry['im:releaseDate'].label).getFullYear();
-      dataList.push({name: entry["im:name"].label, artist: entry["im:artist"].label, link: entry.link.attributes.href, image: entry["im:image"][2].label, genre: entryGenre, releaseYear: releaseYear.toString(), itunesUrl: entry.link.attributes.href});
-      if (genreList.indexOf(entryGenre) === -1)  {
-        genreList.push(entryGenre);
-      }
-      if (releaseYearList.indexOf(releaseYear) === -1) {
-        releaseYearList.push(releaseYear);
-      }
-    });
-    calculateTotalPages(dataList.length);
-    const genres: Option[] = genreList.map((genre) => {
+    const {dataList, genreList} = createLists(responseJson);
+
+    const genres: Option[] = genreList.map((genre: string) => {
       return {name: genre, value: genre}
     });
-    // sort by artist by default on load
-    dataList = sortArtistAscending(dataList);
+
     setData(dataList);
     setAlbums(dataList);
+    calculateTotalPages(dataList.length);
     setLoading(false);
     setGenreOptions(genres);
   }, []);
@@ -128,27 +116,19 @@ const List = () => {
     setSelectedSort(selected as SortOptions);
   }
 
-  const selectSortOptions: Option[] = [];
-  Object.entries(SortOptions).forEach(([, value]) => {
-    selectSortOptions.push({name: value, value: value});
-  })
-
   return (
     <>
       <div className="list">
-        <div className="list-sorting">
-          <div className="list-filters">
-            <Select options={[{value: 'all', name: 'All genres'}, ...genreOptions]} handleSelect={handleGenreSelect} value={selectedGenre} />
-            <Select options={[{value: 'all', name: 'All years'}, ...yearOptions]} handleSelect={handleYearSelect} value={selectedYear} />
-          </div>
-          <div className="list-sort">
-            <div className="list-selectionItem">
-              <div className="list-sortLabel">Sort by</div>
-              <Select options={selectSortOptions} value={selectedSort} handleSelect={handleSortSelect} />
-            </div>
-          </div>
-        </div>
-
+        <Filters
+          genreOptions={genreOptions}
+          handleGenreSelect={handleGenreSelect}
+          selectedGenre={selectedGenre}
+          yearOptions={yearOptions}
+          handleYearSelect={handleYearSelect}
+          selectedYear={selectedYear}
+          selectedSort={selectedSort}
+          handleSortSelect={handleSortSelect}
+        />
         {!!albums.length && (
           <div className="list-content">
             {albums.slice(ITEMS_PER_PAGE * (page - 1), ITEMS_PER_PAGE * page).map((album, i) => <ListItem album={album} key={`album-${i}`} handleSelect={() => {setSelectedAlbum(album)}} />)}

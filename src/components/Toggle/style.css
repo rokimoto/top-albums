@@ -1,17 +1,13 @@
-.darkModeToggle {
+.toggle {
   height: 34px;
   width: 56px;
   border-radius: 32px;
   background: var(--background-inverse);
-  position: absolute;
-  top: var(--spacing-md);
-  right: var(--spacing-sm);
   cursor: pointer;
-  z-index: 1000;
 }
 
 @media (min-width: 961px) {
-  .darkModeToggle {
+  .toggle {
     position: fixed;
     top: auto;
     right: var(--spacing-lg);
@@ -19,7 +15,7 @@
   }
 }
 
-.darkModeToggle-inner {
+.toggle-inner {
   position: absolute;
   top: 50%;
   transform: translate(2px, -50%);
@@ -30,11 +26,11 @@
   transition: transform 0.2s ease-in-out;
 }
 
-.darkModeToggle-inner-light-theme {
+.toggle-inner-selected {
   transform: translate(24px, -50%);
 }
 
-.darkModeToggle-icon {
+.toggle-icon {
   color: var(--fontColor-primary);
   position: absolute;
   top: 50%;

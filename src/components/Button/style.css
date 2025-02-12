@@ -3,7 +3,6 @@
   font-family: var(--fontFamily-paragraph);
   font-weight: var(--fontWeight-paragraph);
   font-size: var(--fontSize-paragraph-md);
-  background-color: var(--color-blue-500);
   border-radius: 24px;
   display: inline-block;
   background: var(--background-primary);
