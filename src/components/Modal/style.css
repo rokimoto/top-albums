@@ -41,11 +41,11 @@
   justify-content: center;
   box-sizing: border-box;
   padding: 0 var(--mobile-margin);
+  max-width: 400px;
 }
 
 @media (min-width: 961px) {
   .modal-contentOuter {
-    width: 400px;
     padding: 0;
   }
 }
