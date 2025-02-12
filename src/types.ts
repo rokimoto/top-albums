@@ -21,7 +21,6 @@ export enum SortOptions {
   ALBUM_DESC = 'Album \u2193',
 }
 
-
 interface ITunesImage {
   label: string;
   attributes: {

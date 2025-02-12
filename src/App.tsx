@@ -24,7 +24,7 @@ function App() {
         <DarkModeToggle handleToggle={toggleTheme} theme={theme} />
         <div className='topContent-text'></div>
           <h1 className='topContent-header'>Top Albums</h1>
-          <p className='topContent-text'>Nam accumsan, risus non lacinia mollis. Mi dolor dictum augue, quis venenatis odio nulla a.</p>
+          <p className='topContent-text'>Browse genres. Or years. Discover albums you've never discovered before.</p>
       </div>
       <List />
     </div>

@@ -3,11 +3,20 @@
   width: 56px;
   border-radius: 32px;
   background: var(--background-inverse);
-  position: fixed;
-  bottom: var(--spacing-2xl);
-  right: var(--spacing-4xl);
+  position: absolute;
+  top: var(--spacing-md);
+  right: var(--spacing-sm);
   cursor: pointer;
   z-index: 1000;
+}
+
+@media (min-width: 961px) {
+  .darkModeToggle {
+    position: fixed;
+    top: auto;
+    right: var(--spacing-lg);
+    bottom: var(--spacing-lg);
+  }
 }
 
 .darkModeToggle-inner {

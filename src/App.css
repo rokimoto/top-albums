@@ -6,7 +6,7 @@
 .topContent {
   text-align: center;
   background-color: var(--background-primary);
-  padding: var(--spacing-4xl) var(--mobile-margin) var(--spacing-3xl);
+  padding: var(--spacing-5xl) var(--mobile-margin) var(--spacing-3xl);
 }
 
 .topContent-text {
@@ -27,4 +27,5 @@
   font-family: var(--fontFamily-paragraph);
   font-weight: var(--fontWeight-paragraph);
   font-size: var(--fontSize-paragraph);
+  line-height: var(--lineHeight-paragraph);
 }
