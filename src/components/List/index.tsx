@@ -4,6 +4,7 @@ import ListItem from '../ListItem';
 import Select from '../Select';
 import Pagination from '../Pagination';
 import Loader from '../Loader';
+import Modal from '../Modal';
 // Types
 import {Album, Option, SortOptions, ITunesEntry, ITunesResponse} from '../../types';
 // Helpers
@@ -25,6 +26,7 @@ const List = () => {
   const [genreOptions, setGenreOptions] = useState<Option[]>([]);
   const [selectedGenre, setSelectedGenre] = useState<string>('all');
   const [selectedSort, setSelectedSort] = useState<SortOptions>(SortOptions.ARTIST_ASC);
+  const [selectedAlbum, setSelectedAlbum] = useState<Album | null>(null);
 
   // set total pages if more than 1 page
   const calculateTotalPages = (totalItems: number) => {
@@ -40,7 +42,7 @@ const List = () => {
     const genreList: string[] = [];
     responseJson.feed.entry.map((entry: ITunesEntry) => {
       const entryGenre = entry.category.attributes.label || '';
-      dataList.push({name: entry["im:name"].label, artist: entry["im:artist"].label, link: entry.link.attributes.href, image: entry["im:image"][2].label, genre: entryGenre});
+      dataList.push({name: entry["im:name"].label, artist: entry["im:artist"].label, link: entry.link.attributes.href, image: entry["im:image"][2].label, genre: entryGenre, releaseDate: entry['im:releaseDate'].attributes.label});
       if (genreList.indexOf(entryGenre) === -1)  {
         genreList.push(entryGenre);
       }
@@ -128,34 +130,36 @@ const List = () => {
   })
 
   return (
-    <div className="list">
-      <div className="list-sorting">
-        <div className="list-filters">
-          <Select options={[{value: 'all', name: 'All genres'}, ...genreOptions]} handleSelect={handleGenreSelect} value={selectedGenre} />
-        </div>
-        <div className="list-sort">
-          <div className="list-selectionItem">
-            <div className="list-sortLabel">Sort by</div>
-            <Select options={selectSortOptions} value={selectedSort} handleSelect={handleSortSelect} />
+    <>
+      <div className="list">
+        <div className="list-sorting">
+          <div className="list-filters">
+            <Select options={[{value: 'all', name: 'All genres'}, ...genreOptions]} handleSelect={handleGenreSelect} value={selectedGenre} />
+          </div>
+          <div className="list-sort">
+            <div className="list-selectionItem">
+              <div className="list-sortLabel">Sort by</div>
+              <Select options={selectSortOptions} value={selectedSort} handleSelect={handleSortSelect} />
+            </div>
           </div>
         </div>
+        {!!albums.length && (
+          <div className="list-content">
+            {albums.map((album, i) => <ListItem album={album} key={`album-${i}`} handleSelect={() => {setSelectedAlbum(album)}} />)}
+          </div>
+        )}
+        {!albums.length && !error && (
+          <div className='list-loader'>
+            <Loader />
+          </div>
+        )}
+        {!albums.length && !!error && (
+          <p className='list-error'>{error}</p>
+        )}
+        {!!albums.length && <Pagination totalPages={totalPages} page={page} handlePageChange={handlePageChange} />}
       </div>
-      {!!albums.length && (
-        <div className="list-content">
-          {albums.map((album, i) => <ListItem album={album} key={`album-${i}`} />)}
-        </div>
-      )}
-      {!albums.length && !error && (
-        <div className='list-loader'>
-          <Loader />
-        </div>
-      )}
-      {!albums.length && !!error && (
-        <p className='list-error'>{error}</p>
-      )}
-      {!!albums.length && <Pagination totalPages={totalPages} page={page} handlePageChange={handlePageChange} />}
-    </div>
-
+      {selectedAlbum && <Modal album={selectedAlbum} handleClose={() => {setSelectedAlbum(null)}} />}
+    </>
   );
 };
 
