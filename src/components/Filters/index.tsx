@@ -25,14 +25,14 @@ const Filters = ({ genreOptions, handleGenreSelect, selectedGenre, yearOptions, 
   })
 
   return (
-    <div className="list-sorting">
-      <div className="list-filters">
+    <div className="filter-sorting">
+      <div className="filter-filters">
         <Select options={[{value: 'all', name: 'All genres'}, ...genreOptions]} handleSelect={handleGenreSelect} value={selectedGenre} />
         <Select options={[{value: 'all', name: 'All years'}, ...yearOptions]} handleSelect={handleYearSelect} value={selectedYear} />
       </div>
-      <div className="list-sort">
-        <div className="list-selectionItem">
-          <div className="list-sortLabel">Sort by</div>
+      <div className="filter-sort">
+        <div className="filter-selectionItem">
+          <div className="filter-sortLabel">Sort by</div>
           <Select options={selectSortOptions} value={selectedSort} handleSelect={handleSortSelect} />
         </div>
       </div>

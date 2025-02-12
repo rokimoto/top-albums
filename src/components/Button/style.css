@@ -5,8 +5,8 @@
   font-size: var(--fontSize-paragraph-md);
   border-radius: 24px;
   display: inline-block;
-  background: var(--background-primary);
-  color: var(--fontColor-primary);
+  background: var(--background-inverse);
+  color: var(--fontColor-inverse);
   position: relative;
   cursor: pointer;
 }
