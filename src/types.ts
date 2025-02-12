@@ -15,10 +15,10 @@ export interface Option {
 }
 
 export enum SortOptions {
-  ARTIST_ASC = 'Artist \u2191',
-  ARTIST_DESC = 'Artist \u2193',
-  ALBUM_ASC = 'Album \u2191',
-  ALBUM_DESC = 'Album \u2193',
+  ARTIST_ASC = 'Artist name \u2191',
+  ARTIST_DESC = 'Artist name \u2193',
+  ALBUM_ASC = 'Album name \u2191',
+  ALBUM_DESC = 'Album name \u2193',
 }
 
 interface ITunesImage {

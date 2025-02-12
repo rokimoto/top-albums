@@ -9,6 +9,7 @@ import Modal from '../Modal';
 import {Album, Option, SortOptions, ITunesEntry, ITunesResponse} from '../../types';
 // Helpers
 import { sortAlbumAscending, sortAlbumDescending, sortArtistAscending, sortArtistDescending } from '../../helpers/sort';
+import { yearOptions, checkIfInDecade } from '../../helpers/releaseYears';
 // Api
 import { fetchAlbums } from '../../api/api';
 // Style
@@ -20,11 +21,11 @@ const ITEMS_PER_PAGE = 24;
 const List = () => {
   const [data, setData] = useState<Album[]>([]);
   const [error, setError] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(true);
   const [page, setPage] = useState(1);
   const [albums, setAlbums] = useState<Album[]>([]);
   const [totalPages, setTotalPages] = useState(1);
   const [genreOptions, setGenreOptions] = useState<Option[]>([]);
-  const [releaseYearOptions, setReleaseYearOptions] = useState<Option[]>([]);
   const [selectedGenre, setSelectedGenre] = useState<string>('all');
   const [selectedYear, setSelectedYear] = useState<string>('all');
   const [selectedSort, setSelectedSort] = useState<SortOptions>(SortOptions.ARTIST_ASC);
@@ -58,15 +59,12 @@ const List = () => {
     const genres: Option[] = genreList.map((genre) => {
       return {name: genre, value: genre}
     });
-    const releaseYears: Option[] = releaseYearList.sort((a, b) => a - b).map((year) => {
-      return {name: year.toString(), value: year.toString()}
-    });
     // sort by artist by default on load
     dataList = sortArtistAscending(dataList);
     setData(dataList);
     setAlbums(dataList.slice(0, ITEMS_PER_PAGE));
+    setLoading(false);
     setGenreOptions(genres);
-    setReleaseYearOptions(releaseYears);
   }, []);
 
   const getTopAlbums = useCallback(async () => {
@@ -85,24 +83,25 @@ const List = () => {
 
   const handlePageChange = (page: number) => {
     setAlbums(data.slice(ITEMS_PER_PAGE * (page - 1), ITEMS_PER_PAGE * page));
+    setLoading(false);
     setPage(page);
   }
 
-  const resortByYear = (year: string) => {;
+  const resortByYear = (decade: string) => {;
     setPage(1);
-    setSelectedYear(year);
-    if (year === 'all') {
-      setAlbums(data.slice(0, ITEMS_PER_PAGE));
-      calculateTotalPages(data.length);
-      return;
-    }
-    const newAlbums: Album[] = [];
+    setSelectedYear(decade);
+    let newAlbums: Album[] = [];
     data.map((entry) => {
-      if ((entry.releaseYear === year && selectedGenre === 'all') || (entry.releaseYear === year && selectedGenre === entry.genre)) {
+      const isInDecade = checkIfInDecade(entry.releaseYear, decade);
+      const isSameGenre = selectedGenre === 'all' || entry.genre === selectedGenre;
+      if (isSameGenre && isInDecade) {
         newAlbums.push(entry);
       }
-    })
+    });
+    console.log('decade', decade, 'length', newAlbums.length)
+    newAlbums = newAlbums.slice(0, ITEMS_PER_PAGE);
     setAlbums(newAlbums);
+    setLoading(false);
     calculateTotalPages(newAlbums.length);
   }
 
@@ -114,18 +113,17 @@ const List = () => {
   const resortByGenre = (newGenre: string) => {
     setPage(1);
     setSelectedGenre(newGenre);
-    if (newGenre === 'all') {
-      setAlbums(data.slice(0, ITEMS_PER_PAGE));
-      calculateTotalPages(data.length);
-      return;
-    }
-    const newAlbums: Album[] = [];
+    let newAlbums: Album[] = [];
     data.map((entry) => {
-      if ((entry.genre === newGenre && selectedYear === 'all') || (entry.genre === newGenre && selectedYear === entry.releaseYear)) {
+      const isInDecade = checkIfInDecade(entry.releaseYear, selectedYear);
+      const isSameGenre = newGenre === 'all' || entry.genre === newGenre;
+      if (isSameGenre && isInDecade) {
         newAlbums.push(entry);
       }
     })
+    newAlbums = newAlbums.slice(0, ITEMS_PER_PAGE)
     setAlbums(newAlbums);
+    setLoading(false);
     calculateTotalPages(newAlbums.length);
   }
 
@@ -139,7 +137,6 @@ const List = () => {
     let newDataList: Album[] = [];
     if (selected === SortOptions.ARTIST_ASC) {
       newDataList = sortArtistAscending(data);
-      console.log('newDataList', newDataList)
     } else if (selected === SortOptions.ARTIST_DESC) {
       newDataList = sortArtistDescending(data);
     } else if (selected === SortOptions.ALBUM_ASC) {
@@ -163,7 +160,7 @@ const List = () => {
         <div className="list-sorting">
           <div className="list-filters">
             <Select options={[{value: 'all', name: 'All genres'}, ...genreOptions]} handleSelect={handleGenreSelect} value={selectedGenre} />
-            <Select options={[{value: 'all', name: 'All years'}, ...releaseYearOptions]} handleSelect={handleYearSelect} value={selectedYear} />
+            <Select options={[{value: 'all', name: 'All years'}, ...yearOptions]} handleSelect={handleYearSelect} value={selectedYear} />
           </div>
           <div className="list-sort">
             <div className="list-selectionItem">
@@ -177,9 +174,14 @@ const List = () => {
             {albums.map((album, i) => <ListItem album={album} key={`album-${i}`} handleSelect={() => {setSelectedAlbum(album)}} />)}
           </div>
         )}
-        {!albums.length && !error && (
+        {!albums.length && !error && loading && (
           <div className='list-loader'>
             <Loader />
+          </div>
+        )}
+        {!albums.length && !error && !loading && (
+          <div className='list-error'>
+            We can’t find any albums that meet your criteria. Please update your selection.
           </div>
         )}
         {!albums.length && !!error && (
