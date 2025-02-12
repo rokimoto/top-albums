@@ -1,5 +1,5 @@
 :root {
-  font-family: "Roboto Mono", serif;
+  font-family: "Inter", serif;
   font-weight: 400;
 
   font-synthesis: none;
@@ -29,8 +29,8 @@
   --color-transparentBlack-70: rgba(0,0,0,0.7);
 
   /* fonts */
-  --fontFamily-header: "Rubik", serif;
-  --fontFamily-paragraph: "Roboto Mono", serif;
+  --fontFamily-header: "Archivo Black", serif;
+  --fontFamily-paragraph: "Inter", serif;
   --fontSize-header: 36px;
   --fontSize-header-md: 24px;
   --fontSize-header-sm: 16px;
@@ -38,7 +38,7 @@
   --fontSize-paragraph: 16px;
   --fontSize-paragraph-sm: 14px;
   --fontSize-paragraph-xs: 12px;
-  --fontWeight-header: 500;
+  --fontWeight-header: 400;
   --fontWeight-paragraph: 400;
   --lineHeight-paragraph: 1.2;
   --fontColor-white: var(--color-white);

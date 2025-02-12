@@ -38,31 +38,6 @@
   }
 }
 
-.list-selectionItem {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-xs);
-}
-
-@media (min-width: 961px) {
-  .list-selectionItem {
-    flex-direction: row;
-    align-items: center;
-    gap: var(--spacing-sm);
-  }
-}
-
-.list-sort {
-  display: flex;
-}
-
-.list-sortLabel {
-  color: var(--fontColor-primary);
-  font-family: var(--fontFamily-paragraph);
-  font-weight: var(--fontWeight-paragraph);
-  font-size: var(--fontSize-paragraph-sm);
-}
-
 .list-loader {
   padding: var(--spacing-6xl) 0;
   display: flex;

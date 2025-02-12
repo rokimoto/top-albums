@@ -39,3 +39,28 @@
     padding-bottom: 0;
   }
 }
+
+.filter-sort {
+  display: flex;
+}
+
+.filter-sortLabel {
+  color: var(--fontColor-primary);
+  font-family: var(--fontFamily-paragraph);
+  font-weight: var(--fontWeight-paragraph);
+  font-size: var(--fontSize-paragraph-sm);
+}
+
+.filter-selectionItem {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+@media (min-width: 961px) {
+  .filter-selectionItem {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--spacing-sm);
+  }
+}

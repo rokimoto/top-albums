@@ -1,5 +1,5 @@
 .button {
-  padding: var(--spacing-xs) var(--spacing-lg);
+  padding: var(--spacing-sm) var(--spacing-lg);
   font-family: var(--fontFamily-paragraph);
   font-weight: var(--fontWeight-paragraph);
   font-size: var(--fontSize-paragraph-md);
