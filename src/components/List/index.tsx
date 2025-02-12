@@ -15,7 +15,6 @@ import { fetchAlbums } from '../../api/api';
 // Style
 import './style.css'
 
-
 const ITEMS_PER_PAGE = 24;
 
 const List = () => {
@@ -85,47 +84,31 @@ const List = () => {
     setPage(page);
   }
 
-  const resortByYear = (decade: string) => {;
-    setPage(1);
-    setSelectedYear(decade);
+  const resortAlbums = ({decade, genre}: {decade: string, genre: string}) => {
     const newAlbums: Album[] = [];
     data.map((entry) => {
       const isInDecade = checkIfInDecade(entry.releaseYear, decade);
-      const isSameGenre = selectedGenre === 'all' || entry.genre === selectedGenre;
+      const isSameGenre = genre === 'all' || entry.genre === genre;
       if (isSameGenre && isInDecade) {
         newAlbums.push(entry);
       }
     });
-    console.log('decade', decade, 'length', newAlbums.length)
+    setPage(1);
     setAlbums(newAlbums);
     setLoading(false);
     calculateTotalPages(newAlbums.length);
   }
 
   const handleYearSelect = (e: FormEvent<HTMLSelectElement>) => {
-    const newYear = e.currentTarget.value;
-    resortByYear(newYear);
-  }
-
-  const resortByGenre = (newGenre: string) => {
-    setPage(1);
-    setSelectedGenre(newGenre);
-    const newAlbums: Album[] = [];
-    data.map((entry) => {
-      const isInDecade = checkIfInDecade(entry.releaseYear, selectedYear);
-      const isSameGenre = newGenre === 'all' || entry.genre === newGenre;
-      if (isSameGenre && isInDecade) {
-        newAlbums.push(entry);
-      }
-    })
-    setAlbums(newAlbums);
-    setLoading(false);
-    calculateTotalPages(newAlbums.length);
+    const newDecade = e.currentTarget.value;
+    setSelectedYear(newDecade);
+    resortAlbums({decade: newDecade, genre: selectedGenre})
   }
 
   const handleGenreSelect = (e: FormEvent<HTMLSelectElement>) => {
     const newGenre = e.currentTarget.value;
-    resortByGenre(newGenre);
+    setSelectedGenre(newGenre);
+    resortAlbums({decade: selectedYear, genre: newGenre});
   }
 
   const handleSortSelect = (e: FormEvent<HTMLSelectElement>) => {
@@ -141,7 +124,7 @@ const List = () => {
       newDataList = sortAlbumDescending(data);
     }
     setData(newDataList);
-    resortByGenre(selectedGenre);
+    resortAlbums({decade: selectedYear, genre: selectedGenre});
     setSelectedSort(selected as SortOptions);
   }
 
@@ -177,9 +160,9 @@ const List = () => {
           </div>
         )}
         {!albums.length && !error && !loading && (
-          <div className='list-error'>
+          <p className='list-error'>
             We can’t find any albums that meet your criteria. Please update your selection.
-          </div>
+          </p>
         )}
         {!albums.length && !!error && (
           <p className='list-error'>{error}</p>

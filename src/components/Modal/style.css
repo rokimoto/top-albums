@@ -56,7 +56,7 @@
   flex-direction: column;
   width: 100%;
   position: relative;
-  padding: var(--spacing-md) ;
+  padding: var(--spacing-md) var(--spacing-md) var(--spacing-3xl);
   box-sizing: border-box;
   border-radius: 20px;
   text-align: center;
