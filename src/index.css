@@ -21,6 +21,8 @@
   --color-grey-800: #454545;
   --color-grey-900: #3d3d3d;
   --color-grey-950: #292929;
+  --color-green-300: #95FF82;
+  --color-green-600: #45cc2d;
   --color-transparentWhite-20: rgba(255,255,255,0.2);
   --color-transparentWhite-50: rgba(255,255,255,0.5);
   --color-transparentWhite-70: rgba(255,255,255,0.7);
@@ -73,6 +75,7 @@
   --background-primary: var(--color-white);
   --background-secondary: var(--color-grey-100);
   --background-inverse: var(--color-black);
+  --background-lighting: var(--color-green-600);
   --borderColor-primary: var(--color-grey-400);
   --borderColor-secondary: var(--color-grey-300);
   --color-transparent-20: var(--color-transparentBlack-20);
@@ -88,6 +91,7 @@
   --background-primary: var(--color-black);
   --background-secondary: var(--color-grey-900);
   --background-inverse: var(--color-white);
+  --background-lighting: var(--color-green-300);
   --borderColor-primary: var(--color-grey-600);
   --borderColor-secondary: var(--color-grey-700);
   --color-transparent-20: var(--color-transparentWhite-20);
