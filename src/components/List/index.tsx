@@ -24,7 +24,9 @@ const List = () => {
   const [albums, setAlbums] = useState<Album[]>([]);
   const [totalPages, setTotalPages] = useState(1);
   const [genreOptions, setGenreOptions] = useState<Option[]>([]);
+  const [releaseYearOptions, setReleaseYearOptions] = useState<Option[]>([]);
   const [selectedGenre, setSelectedGenre] = useState<string>('all');
+  const [selectedYear, setSelectedYear] = useState<string>('');
   const [selectedSort, setSelectedSort] = useState<SortOptions>(SortOptions.ARTIST_ASC);
   const [selectedAlbum, setSelectedAlbum] = useState<Album | null>(null);
 
@@ -40,23 +42,31 @@ const List = () => {
   const displayTopAlbums =  useCallback((responseJson: ITunesResponse) => {
     let dataList: Album[] = [];
     const genreList: string[] = [];
+    const releaseYearList: number[] = [];
     responseJson.feed.entry.map((entry: ITunesEntry) => {
-      const entryGenre = entry.category.attributes.label || '';
-      dataList.push({name: entry["im:name"].label, artist: entry["im:artist"].label, link: entry.link.attributes.href, image: entry["im:image"][2].label, genre: entryGenre, releaseDate: entry['im:releaseDate'].attributes.label});
+      const entryGenre = entry.category.attributes.label;
+      const releaseYear = new Date(entry['im:releaseDate'].label).getFullYear();
+      dataList.push({name: entry["im:name"].label, artist: entry["im:artist"].label, link: entry.link.attributes.href, image: entry["im:image"][2].label, genre: entryGenre, releaseDate: entry['im:releaseDate'].attributes.label, releaseYear: releaseYear.toString()});
       if (genreList.indexOf(entryGenre) === -1)  {
         genreList.push(entryGenre);
+      }
+      if (releaseYearList.indexOf(releaseYear) === -1) {
+        releaseYearList.push(releaseYear);
       }
     });
     calculateTotalPages(dataList.length);
     const genres: Option[] = genreList.map((genre) => {
       return {name: genre, value: genre}
     });
+    const releaseYears: Option[] = releaseYearList.sort((a, b) => a - b).map((year) => {
+      return {name: year.toString(), value: year.toString()}
+    });
     // sort by artist by default on load
     dataList = sortArtistAscending(dataList);
     setData(dataList);
     setAlbums(dataList.slice(0, ITEMS_PER_PAGE));
     setGenreOptions(genres);
-
+    setReleaseYearOptions(releaseYears);
   }, []);
 
   const getTopAlbums = useCallback(async () => {
@@ -69,8 +79,6 @@ const List = () => {
 
   }, [displayTopAlbums]);
 
-
-
   useEffect(() => {
     getTopAlbums();
   }, [getTopAlbums]);
@@ -80,6 +88,28 @@ const List = () => {
     setPage(page);
   }
 
+  const resortByYear = (year: string) => {;
+    setPage(1);
+    setSelectedYear(year);
+    if (year === 'all') {
+      setAlbums(data.slice(0, ITEMS_PER_PAGE));
+      calculateTotalPages(data.length);
+      return;
+    }
+    const newAlbums: Album[] = [];
+    data.map((entry) => {
+      if ((entry.releaseYear === year && selectedGenre === 'all') || (entry.releaseYear === year && selectedGenre === entry.genre)) {
+        newAlbums.push(entry);
+      }
+    })
+    setAlbums(newAlbums);
+    calculateTotalPages(newAlbums.length);
+  }
+
+  const handleYearSelect = (e: FormEvent<HTMLSelectElement>) => {
+    const newYear = e.currentTarget.value;
+    resortByYear(newYear);
+  }
 
   const resortByGenre = (newGenre: string) => {
     setPage(1);
@@ -91,7 +121,7 @@ const List = () => {
     }
     const newAlbums: Album[] = [];
     data.map((entry) => {
-      if (entry.genre === newGenre) {
+      if ((entry.genre === newGenre && selectedYear === 'all') || (entry.genre === newGenre && selectedYear === entry.releaseYear)) {
         newAlbums.push(entry);
       }
     })
@@ -99,10 +129,8 @@ const List = () => {
     calculateTotalPages(newAlbums.length);
   }
 
-
   const handleGenreSelect = (e: FormEvent<HTMLSelectElement>) => {
     const newGenre = e.currentTarget.value;
-    console.log('new genre', newGenre)
     resortByGenre(newGenre);
   }
 
@@ -135,6 +163,7 @@ const List = () => {
         <div className="list-sorting">
           <div className="list-filters">
             <Select options={[{value: 'all', name: 'All genres'}, ...genreOptions]} handleSelect={handleGenreSelect} value={selectedGenre} />
+            <Select options={[{value: 'all', name: 'All years'}, ...releaseYearOptions]} handleSelect={handleYearSelect} value={selectedYear} />
           </div>
           <div className="list-sort">
             <div className="list-selectionItem">

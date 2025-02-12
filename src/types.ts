@@ -5,6 +5,7 @@ export interface Album {
   image: string;
   genre: string;
   releaseDate: string;
+  releaseYear: string;
 }
 
 export interface Option {

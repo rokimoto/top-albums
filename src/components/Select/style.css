@@ -1,5 +1,5 @@
 .select {
-  width: 240px;
+  width: 180px;
   position: relative;
 }
 
@@ -7,8 +7,8 @@
   appearance: none;
   width: 100%;
   font-family: var(--fontFamily-paragraph);
-  font-size: var(--fontSize-paragraph);
-  padding: var(--spacing-xs) var(--spacing-xl) var(--spacing-xs) var(--spacing-sm);
+  font-size: var(--fontSize-paragraph-sm);
+  padding: var(--spacing-2xs) var(--spacing-xl) var(--spacing-2xs) var(--spacing-xs);
   background-color: var(--background-primary);
   border: 1px solid var(--borderColor-primary);
   border-radius: 0;
@@ -33,7 +33,7 @@
   border-left: var(--size) solid transparent;
   border-right: var(--size) solid transparent;
   border-bottom: var(--size) solid var(--fontColor-primary);
-  top: 40%;
+  top: 32%;
 }
 
 .select::after {

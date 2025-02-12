@@ -85,6 +85,7 @@
   --background-secondary: var(--color-grey-100);
   --background-inverse: var(--color-black);
   --borderColor-primary: var(--color-grey-400);
+  --borderColor-secondary: var(--color-grey-300);
   --color-transparent-20: var(--color-transparentBlack-20);
   --color-transparent-50: var(--color-transparentBlack-50);
   --color-transparent-70: var(--color-transparentBlack-70);
@@ -97,7 +98,8 @@
   --background-primary: var(--color-black);
   --background-secondary: var(--color-grey-900);
   --background-inverse: var(--color-white);
-  --borderColor-primary: var(--color-grey-700);
+  --borderColor-primary: var(--color-grey-600);
+  --borderColor-secondary: var(--color-grey-700);
   --color-transparent-20: var(--color-transparentWhite-20);
   --color-transparent-50: var(--color-transparentWhite-50);
   --color-transparent-70: var(--color-transparentWhite-70);
