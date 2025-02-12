@@ -1,8 +1,14 @@
 .toggle {
-  height: 34px;
-  width: 56px;
-  border-radius: 32px;
-  background: var(--background-inverse);
+  --toggle-icon-size: 24px;
+  --toggle-circle-size: 28px;
+  --toggle-border-size: 4px;
+  --toggle-outline-size: 8px;
+  --toggle-height: calc(var(--toggle-circle-size) + var(--toggle-border-size) * 2);
+  --toggle-width: calc(var(--toggle-circle-size) * 2);
+  height: var(--toggle-height);
+  width: var(--toggle-width);
+  border-radius: var(--toggle-height);
+  background-color: var(--background-inverseSecondary);
   cursor: pointer;
 }
 
@@ -18,16 +24,34 @@
 .toggle-inner {
   position: absolute;
   top: 50%;
-  transform: translate(2px, -50%);
+  transform: translate(var(--toggle-border-size), -50%);
   background: var(--background-primary);
-  height: 28px;
-  width: 28px;
+  height: var(--toggle-circle-size);
+  width: var(--toggle-circle-size);
   border-radius: 50%;
   transition: transform 0.2s ease-in-out;
 }
 
 .toggle-inner-selected {
-  transform: translate(24px, -50%);
+  transform: translate(var(--toggle-icon-size), -50%);
+}
+
+.toggle-inner::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: calc(var(--toggle-circle-size) + var(--toggle-outline-size));
+  width: calc(var(--toggle-circle-size) + var(--toggle-outline-size));
+  border-radius: 50%;
+  background-color: var(--fontColor-inverseSecondary);
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.toggle:hover .toggle-inner::before {
+  opacity: 0.5;
 }
 
 .toggle-icon {
@@ -36,5 +60,5 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 24px;
+  font-size: var(--toggle-icon-size);
 }

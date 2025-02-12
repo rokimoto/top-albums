@@ -21,8 +21,11 @@
   --color-grey-800: #454545;
   --color-grey-900: #3d3d3d;
   --color-grey-950: #292929;
-  --color-green-300: #95FF82;
-  --color-green-600: #20CA00;
+  --color-green-100: #d9ffda;
+  --color-green-300: #7df884;
+  --color-green-500: #13cd1f;
+  --color-green-600: #0aaf15;
+  --color-green-950: #013206;
   --color-transparentWhite-20: rgba(255,255,255,0.2);
   --color-transparentWhite-50: rgba(255,255,255,0.5);
   --color-transparentWhite-70: rgba(255,255,255,0.7);
@@ -72,8 +75,10 @@
   --fontColor-subdued: var(--color-grey-900);
   --fontColor-inverse: var(--color-white);
   --fontColor-inverseSubdued: var(--color-grey-50);
+  --fontColor-inverseSecondary: var(--color-green-100);
   --background-primary: var(--color-white);
   --background-secondary: var(--color-grey-100);
+  --background-inverseSecondary: var(--color-green-950);
   --background-inverse: var(--color-black);
   --background-lighting: var(--color-green-600);
   --borderColor-primary: var(--color-grey-400);
@@ -88,8 +93,10 @@
   --fontColor-subdued: var(--color-grey-100);
   --fontColor-inverse: var(--color-black);
   --fontColor-inverseSubdued: var(--color-grey-900);
+  --fontColor-inverseSecondary: var(--color-green-950);
   --background-primary: var(--color-black);
   --background-secondary: var(--color-grey-900);
+  --background-inverseSecondary: var(--color-green-100);
   --background-inverse: var(--color-white);
   --background-lighting: var(--color-green-300);
   --borderColor-primary: var(--color-grey-600);
