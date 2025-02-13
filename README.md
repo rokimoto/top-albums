@@ -1,50 +1,42 @@
-# React + TypeScript + Vite
+# Top albums
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An app to display the top albums based on the [https://itunes.apple.com/us/rss/topalbums/limit=100/json](https://itunes.apple.com/us/rss/topalbums/limit=100/json)
 
-Currently, two official plugins are available:
+You can:
+- View top albums
+- Click on an album for more information including a link to Apple Music
+- Toggle between light and dark mode
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+A working example is available [here]()
 
-## Expanding the ESLint configuration
+## Setup
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
+1. Install dependencies
 
 ```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+npm install
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+2. To start development server
 
 ```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+npm run dev
+```
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+3. To build
+
+```js
+npm run build
+```
+
+4. To run linter
+
+```js
+npm run lint
+```
+
+5. To view preview
+
+```js
+npm run preview
 ```
