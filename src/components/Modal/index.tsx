@@ -1,7 +1,7 @@
 // Components
 import Button from '../Button';
 // Icons
-import Apple from '../../icons/apple';
+import Apple from '../../icons/Apple';
 // Hooks
 import { useLockedBody } from '../../hooks/useLockedBody';
 // Types
