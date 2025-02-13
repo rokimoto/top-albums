@@ -48,6 +48,7 @@
   font-family: var(--fontFamily-paragraph);
   font-weight: var(--fontWeight-bold);
   font-size: var(--fontSize-paragraph-sm);
+  line-height: var(--lineHeight-paragraph);
   color: var(--fontColor-primary);
   padding: var(--spacing-6xl) 0 var(--spacing-4xl);
   text-align: center;
