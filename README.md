@@ -1,13 +1,13 @@
 # Top albums
 
-An app to display the top albums based on the [https://itunes.apple.com/us/rss/topalbums/limit=100/json](https://itunes.apple.com/us/rss/topalbums/limit=100/json)
+An app to display the top albums based on the iTunes api: [https://itunes.apple.com/us/rss/topalbums/limit=100/json](https://itunes.apple.com/us/rss/topalbums/limit=100/json)
 
 You can:
 - View top albums
 - Click on an album for more information including a link to Apple Music
 - Toggle between light and dark mode
 
-A working example is available [here]()
+A working example is available [here](https://top-albums-zeta.vercel.app)
 
 ## Setup
 
