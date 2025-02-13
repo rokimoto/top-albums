@@ -28,11 +28,11 @@
   padding: var(--spacing-2xs);
   cursor: pointer;
   border-radius: 50%;
-  transition: background .2s ease-in-out;
+  transition: background-color .2s ease-in-out;
 }
 
 .modal-close:hover {
-  background: var(--color-transparent-20);
+  background-color: var(--color-transparent-20);
 }
 
 .modal-close svg {
