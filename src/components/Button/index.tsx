@@ -2,6 +2,9 @@
 import './style.css'
 
 interface ButtonProps {
+  /**
+   * The text inside the button
+   */
   text: string;
 }
 

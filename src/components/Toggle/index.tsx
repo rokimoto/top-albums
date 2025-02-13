@@ -2,8 +2,17 @@
 import './style.css'
 
 interface ToggleProps {
+  /**
+   * The function that runs when the switch is toggled
+   */
   handleToggle: () => void;
+  /**
+   * Whether the switch is toggled or not
+   */
   selected: boolean;
+  /**
+   * An icon in text or unicode format
+   */
   icon?: string;
 }
 

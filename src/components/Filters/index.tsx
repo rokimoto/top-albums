@@ -7,13 +7,37 @@ import {Option, SortOptions} from '../../types';
 import './style.css'
 
 interface FiltersProps {
+  /**
+   * The options for the genre dropdown
+   */
   genreOptions: Option[];
+  /**
+   * The function run when selecting a new genre
+   */
   handleGenreSelect: (e: FormEvent<HTMLSelectElement>) => void;
+  /**
+   * The currently selected genre
+   */
   selectedGenre: string;
+  /**
+   * The options for the year dropdown
+   */
   yearOptions: Option[];
+  /**
+   * The function run when selecting a new decade
+   */
   handleYearSelect: (e: FormEvent<HTMLSelectElement>) => void;
+  /**
+   * The currently selected decade
+   */
   selectedYear: string;
+  /**
+   * The currently selected sorting style
+   */
   selectedSort: SortOptions;
+  /**
+   * The function run when selecting a new sorting style
+   */
   handleSortSelect: (e: FormEvent<HTMLSelectElement>) => void;
 }
 

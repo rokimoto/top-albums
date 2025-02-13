@@ -4,7 +4,13 @@ import {Album} from '../../types';
 import './style.css'
 
 interface ListItemProps {
+  /**
+   * The album displayed in this list item
+   */
   album: Album;
+  /**
+   * The function that runs when the album is clicked
+   */
   handleSelect: () => void;
 }
 

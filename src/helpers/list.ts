@@ -2,6 +2,9 @@
 import { ITunesResponse, Album, ITunesEntry } from "../types";
 import { sortArtistAscending } from "./sort";
 
+/**
+ * Function to create genre and album lists based on iTunes response data
+ */
 export const createLists = (responseJson: ITunesResponse) => {
   let dataList: Album[] = [];
   const genreList: string[] = [];

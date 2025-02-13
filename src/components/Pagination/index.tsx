@@ -2,8 +2,17 @@
 import './style.css'
 
 interface PaginationProps {
+  /**
+   * How many total pages there are
+   */
   totalPages: number;
+  /**
+   * The current page
+   */
   page: number;
+  /**
+   * The function that runs when a pagination item is clicked
+   */
   handlePageChange: (page: number) => void;
 }
 

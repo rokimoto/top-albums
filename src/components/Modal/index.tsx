@@ -8,7 +8,13 @@ import { Album } from '../../types';
 import './style.css'
 
 interface ModalProps {
+  /**
+   * The album that is displayed inside the modal
+   */
   album: Album;
+  /**
+   * The function that is run when the modal is closed
+   */
   handleClose: () => void;
 }
 

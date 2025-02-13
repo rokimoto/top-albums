@@ -2,8 +2,8 @@
 .pagination {
   display: flex;
   justify-content: center;
-  gap: var(--spacing-lg);
   margin: var(--spacing-xl);
+  gap: var(--spacing-2xs);
 }
 
 .pagination-number {
@@ -12,6 +12,7 @@
   font-weight: var(--fontWeight-paragraph);
   font-size: var(--fontSize-paragraph-sm);
   cursor: pointer;
+  padding: var(--spacing-sm);
 }
 
 .pagination-number-active {
