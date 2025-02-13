@@ -1,6 +1,6 @@
-import {FormEvent} from 'react';
+import { FormEvent } from 'react';
 // Types
-import {Option} from '../../types';
+import { Option } from '../../types';
 // Style
 import './style.css'
 

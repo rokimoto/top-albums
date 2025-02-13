@@ -1,3 +1,4 @@
+// Types
 import { Option } from "../types";
 
 const decades = [

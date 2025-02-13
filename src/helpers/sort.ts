@@ -1,3 +1,4 @@
+// Types
 import { Album } from "../types"
 
 export const sortArtistAscending = (data: Album[]) => {

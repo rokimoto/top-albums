@@ -2,7 +2,7 @@ import { FormEvent } from 'react';
 // Components
 import Select from '../Select';
 // Types
-import {Option, SortOptions} from '../../types';
+import { Option, SortOptions } from '../../types';
 // Style
 import './style.css'
 

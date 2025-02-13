@@ -9,6 +9,7 @@
   color: var(--fontColor-inverse);
   position: relative;
   cursor: pointer;
+  overflow: hidden;
 }
 
 .button::before {

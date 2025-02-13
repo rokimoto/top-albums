@@ -4,7 +4,6 @@ import List from './components/List';
 import Toggle from './components/Toggle';
 // Styles
 import './App.css'
-import './styles/reset.css'
 
 function App() {
   const [theme, updateTheme] = useState<"light-theme" | "dark-theme">("light-theme");

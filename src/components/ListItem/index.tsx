@@ -1,5 +1,5 @@
 // Types
-import {Album} from '../../types';
+import { Album } from '../../types';
 // Style
 import './style.css'
 

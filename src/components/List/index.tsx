@@ -1,4 +1,4 @@
-import {useEffect, useState, FormEvent, useCallback} from 'react';
+import { useEffect, useState, FormEvent, useCallback } from 'react';
 // Components
 import Filters from '../Filters';
 import ListItem from '../ListItem';
@@ -6,10 +6,10 @@ import Pagination from '../Pagination';
 import Loader from '../Loader';
 import Modal from '../Modal';
 // Types
-import {Album, Option, SortOptions, ITunesResponse} from '../../types';
+import { Album, Option, SortOptions, ITunesResponse } from '../../types';
 // Helpers
 import { sortAlbumAscending, sortAlbumDescending, sortArtistAscending, sortArtistDescending } from '../../helpers/sort';
-import {createLists} from '../../helpers/list';
+import { createLists } from '../../helpers/list';
 import { yearOptions, checkIfInDecade } from '../../helpers/releaseYears';
 // Api
 import { fetchAlbums } from '../../api/api';

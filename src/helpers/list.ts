@@ -1,5 +1,7 @@
 
+// Types
 import { ITunesResponse, Album, ITunesEntry } from "../types";
+// Helpers
 import { sortArtistAscending } from "./sort";
 
 /**
