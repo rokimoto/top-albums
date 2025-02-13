@@ -1,5 +1,7 @@
 // Components
 import Button from '../Button';
+// Icons
+import Apple from '../../icons/apple';
 // Hooks
 import { useLockedBody } from '../../hooks/useLockedBody';
 // Types
@@ -32,7 +34,7 @@ const Modal = ({album, handleClose}: ModalProps) => {
           <p className='modal-artist'>{album.artist}</p>
           <p className='modal-info'>{album.genre} &middot; {album.releaseYear}</p>
           <a href={album.itunesUrl} target="_blank">
-            <Button text='View on Apple Music' />
+            <Button text={<>View on&nbsp;<Apple size={24} /> Music</>} />
           </a>
         </div>
       </div>

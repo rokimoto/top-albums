@@ -1,11 +1,12 @@
+import { ReactNode } from 'react';
 // Style
 import './style.css'
 
 interface ButtonProps {
   /**
-   * The text inside the button
+   * The content/text inside the button
    */
-  text: string;
+  text: string | ReactNode;
 }
 
 const Button = ({text}: ButtonProps) => {

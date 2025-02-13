@@ -4,12 +4,17 @@
   font-weight: var(--fontWeight-paragraph);
   font-size: var(--fontSize-paragraph-md);
   border-radius: 24px;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   background: var(--background-lighting);
   color: var(--fontColor-inverse);
   position: relative;
   cursor: pointer;
   overflow: hidden;
+}
+
+.button svg {
+  fill: var(--fontColor-inverse);
 }
 
 .button::before {
