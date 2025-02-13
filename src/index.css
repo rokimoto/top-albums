@@ -99,8 +99,8 @@
   --background-inverseSecondary: var(--color-green-100);
   --background-inverse: var(--color-white);
   --background-lighting: var(--color-green-300);
-  --borderColor-primary: var(--color-grey-600);
-  --borderColor-secondary: var(--color-grey-700);
+  --borderColor-primary: var(--color-grey-500);
+  --borderColor-secondary: var(--color-grey-600);
   --color-transparent-20: var(--color-transparentWhite-20);
   --color-transparent-50: var(--color-transparentWhite-50);
   --color-transparent-70: var(--color-transparentWhite-70);
