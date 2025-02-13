@@ -24,11 +24,21 @@
 .modal-close {
   position: absolute;
   right: var(--spacing-xs);
-  top: 0;
-  padding: var(--spacing-2xs) var(--spacing-sm);
-  color: var(--fontColor-primary);
-  font-size: 40px;
+  top: var(--spacing-xs);
+  padding: var(--spacing-2xs);
   cursor: pointer;
+  border-radius: 50%;
+  transition: background .2s ease-in-out;
+}
+
+.modal-close:hover {
+  background: var(--color-transparent-20);
+}
+
+.modal-close svg {
+  fill: var(--fontColor-primary);
+  position: relative;
+  top: 1px;
 }
 
 .modal-contentOuter {

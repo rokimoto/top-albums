@@ -2,6 +2,7 @@
 import Button from '../Button';
 // Icons
 import Apple from '../../icons/Apple';
+import Close from '../../icons/Close';
 // Hooks
 import { useLockedBody } from '../../hooks/useLockedBody';
 // Types
@@ -28,7 +29,7 @@ const Modal = ({album, handleClose}: ModalProps) => {
       <div className="modal-background" onClick={handleClose} />
       <div className="modal-contentOuter">
         <div className='modal-contentInner'>
-          <div className='modal-close' onClick={handleClose}>&#x2612;</div>
+          <div className='modal-close' onClick={handleClose}><Close size={32} /></div>
           <img className='modal-image' src={album.image} alt={album.name} height={170} width={170} />
           <h3 className='modal-header'>{album.name}</h3>
           <p className='modal-artist'>{album.artist}</p>
